@@ -41,7 +41,12 @@ class HeuristicReranker:
     """
 
     def rerank(self, query: str, candidates: list[Scored], k: int = 5) -> list[Rescored]:
-        q_toks = set(tokenize(query))
+        q_tok_list = tokenize(query)  # keep original order for bigrams
+        q_toks = set(q_tok_list)      # set only for membership/overlap counting
+        # bigrams from the query's actual word order -- converting a set back to
+        # a list would iterate in Python's hash-randomized order and silently
+        # change which "phrases" get detected between runs/interpreters
+        q_bigrams = {f"{a}_{b}" for a, b in zip(q_tok_list, q_tok_list[1:])}
         rescored = []
         for c in candidates:
             p = c.passage
@@ -53,15 +58,13 @@ class HeuristicReranker:
             coverage = overlap / (len(q_toks) or 1)
             # reward exact phrase-ish adjacency: distinct bigram overlap
             p_bigrams = {f"{a}_{b}" for a, b in zip(p_toks, p_toks[1:])}
-            q_list = list(q_toks)
-            q_bigrams = {f"{a}_{b}" for a, b in zip(q_list, q_list[1:])}
             bigram_overlap = len(p_bigrams & q_bigrams)
             stale_penalty = 0.6 if _looks_superseded(p.doc) else 0.0
             score = 0.6 * coverage + 0.1 * bigram_overlap - stale_penalty
             score += 0.3 * c.score  # keep some retrieval signal as a prior
             score = max(0.0, min(1.0, score))  # confidence is a 0..1 quantity
             rescored.append(Rescored(p, round(score, 4)))
-        rescored.sort(key=lambda r: r.score, reverse=True)
+        rescored.sort(key=lambda r: (-r.score, r.passage.id))  # id as deterministic tie-break
         return rescored[:k]
 
 

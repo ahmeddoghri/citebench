@@ -110,11 +110,16 @@ class HybridRetriever:
         dense_hits = self.dense.search(query, k=pool)
         bm25_norm = _minmax(bm25_hits)
         dense_norm = _minmax(dense_hits)
-        ids = set(bm25_norm) | set(dense_norm)
+        # dict.fromkeys preserves deterministic insertion order; a `set` union
+        # would iterate in Python's hash-randomized order, silently changing
+        # tie-breaks between runs/interpreters -- a real determinism bug for
+        # anything used as a benchmark.
+        ids = list(dict.fromkeys([*bm25_norm.keys(), *dense_norm.keys()]))
         fused = [
             Scored(self.passages[pid],
                   self.alpha * bm25_norm.get(pid, 0.0) + (1 - self.alpha) * dense_norm.get(pid, 0.0))
             for pid in ids
         ]
-        fused.sort(key=lambda s: s.score, reverse=True)
+        # secondary sort key on id makes ties fully deterministic too
+        fused.sort(key=lambda s: (-s.score, s.passage.id))
         return fused[:k]

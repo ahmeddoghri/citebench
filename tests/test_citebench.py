@@ -18,9 +18,11 @@ def test_pipeline_answers_with_a_citation():
 
 
 def test_pipeline_flags_no_evidence_as_unvalidated():
-    pipeline = CitationPipeline(HybridRetriever(PASSAGES), validation_floor=0.99)
+    # confidence is clipped to a max of 1.0, so 1.5 is a genuinely unreachable
+    # floor -- unlike 0.99, which a perfect match can legitimately hit
+    pipeline = CitationPipeline(HybridRetriever(PASSAGES), validation_floor=1.5)
     ans = pipeline.answer("What is the shelf life of the drug substance?")
-    assert not ans.validated  # score can't clear an impossibly high floor
+    assert not ans.validated
 
 
 def test_reranking_resolves_superseded_vs_current_protocol():
