@@ -73,7 +73,7 @@ pipeline = CitationPipeline(HybridRetriever(PASSAGES))
 ans = pipeline.answer("What is the new primary endpoint under amendment v3?")
 
 print(ans.cited_passage.id, ans.confidence, ans.validated)
-# p1  0.72  True   <- correctly ignores the keyword-stuffed draft, p11
+# p1  0.71  True   <- correctly ignores the keyword-stuffed draft, p11
 ```
 
 `validated` is a hard floor: if the top citation's confidence doesn't clear
