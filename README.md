@@ -8,6 +8,10 @@
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
 ![license](https://img.shields.io/badge/license-MIT-black)
 
+> **Quantify how much reranking actually improves citation precision.** On
+> adversarial regulatory-style content, hybrid retrieval + reranking lifts
+> citation precision **62% → 88%**. Zero deps: `python -m citebench.eval`.
+
 In domains like FDA regulatory submissions, "the answer sounds right" isn't
 good enough — the cited passage has to actually be the current, correct one.
 Plain lexical retrieval gets fooled constantly: a superseded draft that repeats
