@@ -7,10 +7,10 @@
 >>> ans.cited_passage.id
 'p8'
 """
-from .corpus import Passage, QAItem, PASSAGES, BENCH, tokenize
-from .retrieve import BM25Index, DenseIndex, HybridRetriever, Scored
+from .corpus import BENCH, PASSAGES, Passage, QAItem, tokenize
+from .pipeline import Answer, CitationPipeline
 from .rerank import HeuristicReranker, Reranker, Rescored
-from .pipeline import CitationPipeline, Answer
+from .retrieve import BM25Index, DenseIndex, HybridRetriever, Scored
 
 __all__ = [
     "Passage", "QAItem", "PASSAGES", "BENCH", "tokenize",

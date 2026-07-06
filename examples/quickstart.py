@@ -1,7 +1,7 @@
 """Ask a citation-grounded question, then run the benchmark.
 Run: python examples/quickstart.py
 """
-from citebench import HybridRetriever, CitationPipeline
+from citebench import CitationPipeline, HybridRetriever
 from citebench.corpus import PASSAGES
 from citebench.eval import _precision_bm25_only, _precision_hybrid
 

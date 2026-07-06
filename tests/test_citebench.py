@@ -1,5 +1,5 @@
-from citebench import HybridRetriever, CitationPipeline, BM25Index
-from citebench.corpus import PASSAGES, BENCH
+from citebench import BM25Index, CitationPipeline, HybridRetriever
+from citebench.corpus import BENCH, PASSAGES
 from citebench.eval import _precision_bm25_only, _precision_hybrid
 
 
