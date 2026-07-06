@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import hashlib
 import math
-from collections import Counter, defaultdict
+from collections import Counter
 from dataclasses import dataclass
 
 from .corpus import Passage, tokenize
