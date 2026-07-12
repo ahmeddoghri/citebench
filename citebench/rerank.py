@@ -5,7 +5,7 @@ why near-duplicate or superseded passages (e.g. an old protocol version vs. its
 amendment) can outrank the right one. A reranker looks at the pair *together*
 and is what actually pushes citation precision up in production RAG.
 
-``HeuristicReranker`` is offline and deterministic — word-overlap plus a
+``HeuristicReranker`` is offline and deterministic, word-overlap plus a
 recency/specificity prior. Swap in a real cross-encoder (the bge-reranker-v2-m3
 / Qwen3-Reranker class of models trending on Hugging Face right now) via the
 same ``rerank(query, passages)`` interface.
@@ -34,7 +34,7 @@ class HeuristicReranker:
     """Token-overlap cross-scoring with a supersession prior.
 
     Real cross-encoders jointly attend over (query, passage); we approximate
-    the *effect* — better discrimination between confusable passages — with
+    the *effect*, better discrimination between confusable passages, with
     weighted overlap plus a same-topic conflict penalty for stale content
     (passages whose doc name suggests an earlier version, e.g. ``protocol_v2``
     vs. ``protocol_amend_v3``).

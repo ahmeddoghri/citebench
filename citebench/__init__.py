@@ -1,4 +1,4 @@
-"""CiteBench — hybrid retrieval + reranking benchmark for citation-grounded RAG.
+"""CiteBench, hybrid retrieval + reranking benchmark for citation-grounded RAG.
 
 >>> from citebench import HybridRetriever, CitationPipeline
 >>> from citebench.corpus import PASSAGES

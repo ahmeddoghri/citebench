@@ -2,12 +2,12 @@
 the answer?
 
 We compare three configurations on the bundled regulatory-document benchmark
-(protocol amendments, IND safety reports, CMC/stability docs — the FDA-style
+(protocol amendments, IND safety reports, CMC/stability docs, the FDA-style
 domain where citation correctness is non-negotiable):
 
-  * bm25_only        — lexical retrieval, no fusion, no reranking
-  * hybrid_no_rerank — BM25 + dense fusion, no reranking
-  * hybrid_rerank    — BM25 + dense fusion, then cross-encoder-style reranking
+  * bm25_only: lexical retrieval, no fusion, no reranking
+  * hybrid_no_rerank: BM25 + dense fusion, no reranking
+  * hybrid_rerank: BM25 + dense fusion, then cross-encoder-style reranking
 
 Citation precision = fraction of questions whose top-1 cited passage id is in
 the gold set. This isolates exactly what reranking buys you in a RAG pipeline.

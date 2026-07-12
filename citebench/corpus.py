@@ -47,7 +47,7 @@ PASSAGES: list[Passage] = [
     Passage("p10", "statistical_plan",
             "The statistical analysis plan specifies a two-sided alpha of 0.05 with no interim analysis for efficacy."),
     # adversarial: repeats query terms heavily (fools plain BM25 term-frequency
-    # scoring) but is a rejected draft — reranking must penalize it as superseded
+    # scoring) but is a rejected draft, reranking must penalize it as superseded
     Passage("p11", "amendment_v3_draft",
             "Draft amendment v3 amendment v3 early proposal: primary endpoint primary endpoint "
             "considered 18-week overall survival overall survival, amendment v3 draft rejected "
