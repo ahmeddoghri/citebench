@@ -9,10 +9,14 @@
 """
 from .corpus import BENCH, PASSAGES, Passage, QAItem, tokenize
 from .pipeline import Answer, CitationPipeline
+from .pipeline_v2 import AnswerV2, CitationPipelineV2
 from .rerank import HeuristicReranker, Reranker, Rescored
+from .rerank_v2 import ContentReranker, FilenameBlindReranker, RescoredV2
 from .retrieve import BM25Index, DenseIndex, HybridRetriever, Scored
 
 __all__ = [
+    "ContentReranker", "FilenameBlindReranker", "RescoredV2",
+    "CitationPipelineV2", "AnswerV2",
     "Passage", "QAItem", "PASSAGES", "BENCH", "tokenize",
     "BM25Index", "DenseIndex", "HybridRetriever", "Scored",
     "HeuristicReranker", "Reranker", "Rescored",

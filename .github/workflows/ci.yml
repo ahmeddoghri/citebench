@@ -28,3 +28,35 @@ jobs:
         run: python examples/quickstart.py
       - name: Run benchmark
         run: python -m citebench.eval
+
+  blinded:
+    # The reranking gain has to survive renaming the documents. If it does not,
+    # the reranker is reading filenames instead of passages, which is exactly
+    # what the original heuristic was doing.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Score blinded and adversarial runs
+        run: |
+          python -m citebench.eval_v2
+          python - <<'EOF'
+          from citebench.eval_v2 import build_report
+
+          report = build_report()
+          adversarial = report["adversarial"]
+          holdout = report["holdout"]
+
+          # Content signals must carry the result with filenames switched off.
+          assert (
+              adversarial["v2 filename-blind"]["accuracy"]
+              == adversarial["v2 content"]["accuracy"]
+          ), adversarial
+          assert adversarial["v2 content"]["fabricated_citations"] == 0, adversarial
+          assert holdout["v2 filename-blind"]["fabricated_citations"] == 0, holdout
+          assert holdout["v2 filename-blind"]["accuracy"] == 1.0, holdout
+          print("citation honesty holds without filename hints")
+          EOF
+
