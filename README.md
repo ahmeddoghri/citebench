@@ -2,7 +2,6 @@
 
 **A hybrid retrieval + reranking benchmark for citation-grounded RAG in regulated domains.**
 
-![CI](https://github.com/ahmeddoghri/citebench/actions/workflows/ci.yml/badge.svg)
 ![tests](https://img.shields.io/badge/tests-44%20passing-brightgreen)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
