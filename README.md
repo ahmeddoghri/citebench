@@ -2,10 +2,13 @@
 
 **A hybrid retrieval + reranking benchmark for citation-grounded RAG in regulated domains.**
 
-![tests](https://img.shields.io/badge/tests-44%20passing-brightgreen)
+[![tests](https://github.com/ahmeddoghri/citebench/actions/workflows/tests.yml/badge.svg)](https://github.com/ahmeddoghri/citebench/actions/workflows/tests.yml)
 ![python](https://img.shields.io/badge/python-3.9%2B-blue)
 ![deps](https://img.shields.io/badge/runtime%20deps-none-success)
 ![license](https://img.shields.io/badge/license-MIT-black)
+[![case study](https://img.shields.io/badge/case%20study-adoghri.com-e0703e)](https://adoghri.com/project-7.html)
+
+![citebench](docs/cover.jpg)
 
 > **Quantify how much reranking actually improves citation precision.** On
 > adversarial regulatory-style content, hybrid retrieval plus reranking
@@ -221,7 +224,7 @@ quality.
 ## Tests
 
 ```bash
-pip install pytest && pytest -q      # 7 passing
+pip install pytest && pytest -q      # 44 passing
 ```
 
 ## More in this series
