@@ -1,4 +1,4 @@
-# 📎 CiteBench
+# citebench
 
 **A hybrid retrieval + reranking benchmark for citation-grounded RAG in regulated domains.**
 
@@ -30,7 +30,7 @@ actually be the current, correct one.
 Plain lexical retrieval gets fooled constantly. A superseded draft that
 repeats the query's exact keywords will outrank the real, current passage
 every time, because it looks like a better keyword match and has no idea
-it's supposed to be dead. CiteBench is a small, inspectable RAG pipeline
+it's supposed to be dead. citebench is a small, inspectable RAG pipeline
 (BM25 plus dense fusion plus reranking) with a benchmark that quantifies
 exactly what reranking buys you in **citation precision**: the fraction
 of answers whose top citation is actually correct.

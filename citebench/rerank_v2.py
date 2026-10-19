@@ -32,10 +32,9 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import List
 
 from .corpus import Passage, tokenize
-from .rerank import Rescored
 from .retrieve import Scored
 
 # Status language stating that *this* passage no longer governs.

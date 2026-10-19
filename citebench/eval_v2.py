@@ -27,7 +27,6 @@ from .advcorpus import (
     ADV_PASSAGES,
     HOLDOUT_BENCH,
     HOLDOUT_PASSAGES,
-    AdvQAItem,
 )
 from .corpus import BENCH, PASSAGES, Passage
 from .pipeline import CitationPipeline
